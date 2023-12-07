@@ -176,19 +176,40 @@ public class Helper {
         return input;
     }
 
-    // Creates a pretty header (idk what it actually does yet)
+    // Creates a pretty header with a message centered
     public static void prettyHeader(String msg) {
 
+        // Doing the math to center the string
+        int z = (60 - msg.length()) / 2 - 2;
+        String x = " ";
+
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 60; j++) {
-                if (i==1 && j > 3 && j < 57) {
-                    System.out.print(" ");
-                } else {
+            if (i == 1) {
+                for (int k = 0; k < 60; k++) {
+                    if (z == k) {
+                        System.out.print(msg);
+                    } else if (k < 3 || k > 56) {
+                        System.out.print("*");
+                    } else if (k < 56 - (msg.length() - 2)) {
+                        System.out.print(x);
+                    }
+                }
+                System.out.println(" ");
+            } else {
+                for (int j = 0; j < 60; j++) {
                     System.out.print("*");
                 }
-
+                System.out.println(" ");
             }
-            System.out.println(" ");
         }
+    }
+
+    // Converts Fahrenheit to Celsius
+    public static double CtoF(double Celsius) {
+        double fahrenheit;
+
+        fahrenheit = ((Celsius*9)/5) + 32;
+
+        return fahrenheit;
     }
 }
